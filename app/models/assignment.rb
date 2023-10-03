@@ -6,6 +6,7 @@ class Assignment < ApplicationRecord
 
   before_save :calculate_total
   after_save :update_assignable_total # Update Employee or Contractor total
+  after_destroy :update_assignable_total
 
   private
 

@@ -1,5 +1,5 @@
 class ContractorsController < ApplicationController
-  before_action :set_contractor
+  before_action :set_contractor, only: [:show]
 
   def index
     @contractors = Contractor.all
@@ -7,7 +7,8 @@ class ContractorsController < ApplicationController
   end
 
   def show
-    render json: @contractor
+    @assignments = @contractor.assignments
+    render json: { contractor: @contractor, assignments: @assignments }
   end
 
   private

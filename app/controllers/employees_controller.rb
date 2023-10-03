@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee
+  before_action :set_employee, only: [:show]
 
   def index
     @employees = Employee.all
@@ -7,7 +7,8 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    render json: @employee
+    @assignments = @employee.assignments
+    render json: { employee: @employee, assignments: @assignments }
   end
 
   private
